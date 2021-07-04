@@ -1,8 +1,9 @@
 'use strict';
-function product(name,img_src,time){
+function product(name,img_src,time,see){
     this.name = name;
     this.img_src = img_src;
     this.time = 0;
+    this.see = 0;
     product.productelement.push(this);
   }
 
@@ -55,6 +56,11 @@ function renderThreeImages(){
     centerIndex =generateRandomIndex();
     while(leftIndex === centerIndex){centerIndex =generateRandomIndex();}
   }
+
+  product.productelement[leftIndex].see++;
+  product.productelement[centerIndex].see++;
+  product.productelement[rightIndex].see++;
+
   leftImageElement.src = product.productelement[leftIndex].img_src;
   centerImageElement.src = product.productelement[centerIndex].img_src;
   rightImageElement.src = product.productelement[rightIndex].img_src;
@@ -90,7 +96,7 @@ function handleClick(event){
     for(let i = 0 ; i < product.productelement.length; i++){
       let li = document.createElement('li');
       ul.appendChild(li);
-      li.textContent = `${product.productelement[i].name} has this number of time ${product.productelement[i].time}`
+      li.textContent =` ${product.productelement[i].name} had ${product.productelement[i].time} votes, and seen ${product.productelement[i].see} times.`
     }
     leftImageElement.removeEventListener('click',handleClick);
     centerImageElement.removeEventListener('click',handleClick)
@@ -107,3 +113,5 @@ function handleClick(event){
     }
 
   }
+
+

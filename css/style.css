@@ -3,4 +3,10 @@
 }
 img{
     display: flex;
+    width: 400px;
+    height: 400px;
+}
+ul{
+    color: blue;
+    font-weight: 800px; ;
 }
