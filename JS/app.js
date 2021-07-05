@@ -14,6 +14,8 @@ product.productelement = []
 let counter = 0;
 const maxAttempts = 25;
 
+
+
 new product('bag', 'img/bag.jpg');
 new product('banana', 'img/banana.jpg');
 new product('bathroom', 'img/bathroom.jpg');
@@ -33,7 +35,7 @@ new product('unicorn', 'img/unicorn.jpg')
 new product('water-can', 'img/water-can.jpg')
 new product('wine-glass', 'img/wine-glass.jpg')
 
-
+const section = document.getElementById('sec-one');
 const leftImageElement = document.getElementById('left-image');
 const centerImageElement = document.getElementById('center-image');
 const rightImageElement = document.getElementById('right-image');
@@ -53,22 +55,22 @@ function renderThreeImages() {
   rightIndex = generateRandomIndex();
   centerIndex = generateRandomIndex();
 
-  while (leftIndex === rightIndex || centerIndex === leftIndex || rightIndex === centerIndex|| images.includes(leftIndex) ||
-  images.includes(centerIndex) || images.includes(rightIndex)) {
+  while (leftIndex === rightIndex || centerIndex === leftIndex || rightIndex === centerIndex|| images.includes(leftIndex) ||images.includes(centerIndex) || images.includes(rightIndex)) {
     leftIndex = generateRandomIndex();
     centerIndex = generateRandomIndex();
     while (leftIndex === centerIndex) { centerIndex = generateRandomIndex(); }
   }
   
+  images=[];
+  images.push(leftIndex);
+  images.push(centerIndex);
+  images.push(rightIndex);
 
   leftImageElement.src = product.productelement[leftIndex].img_src;
   centerImageElement.src = product.productelement[centerIndex].img_src;
   rightImageElement.src = product.productelement[rightIndex].img_src;
 
-  images=[];
-  images.push(leftIndex);
-  images.push(centerIndex);
-  images.push(rightIndex);
+
   leftImageElement.addEventListener('click', handleClick);
   product.productelement[leftIndex].see++;
   centerImageElement.addEventListener('click', handleClick);
@@ -77,7 +79,7 @@ function renderThreeImages() {
   product.productelement[rightIndex].see++;
 }
 renderThreeImages();
-const section = document.getElementById('sec-one');
+
 
 let btnEl;
 function handleClick(event) {
