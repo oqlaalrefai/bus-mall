@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bus-mall</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
 </head>
 
 <body>
@@ -21,22 +24,18 @@
             <img src="" alt="" id="right-image">
 
         </section>
-        <button onclick="myFunction()">show result</button>
-        <div id="myDIV" >
-            <style> 
-                div {
-                  background-image: url("img/store.png");
-                  background-repeat: no-repeat, repeat;
-                }
-                </style>
+        <button id="btn" class="btn btn-dark">Showing Results</button>    
             <section id="sec-two">
                 <ul id="unList"></ul>
             </section>
-        </div>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        
     </main>
+    
     <footer>
 
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="JS/app.js"></script>
 </body>
 
