@@ -1,4 +1,5 @@
 'use strict';
+let arrOfVotes = [];
 function product(name, img_src, votes, see) {
   this.name = name;
   this.img_src = img_src;
@@ -8,14 +9,14 @@ function product(name, img_src, votes, see) {
   arrOfNames.push(this.name);
 }
 let images=[];
-let arrOfVotes = [];
+
 let arrOfNames = [];
 product.productelement = []
 let counter = 0;
 const maxAttempts = 25;
 
 
-
+if (localStorage.getItem('productelement') === null) {
 new product('bag', 'img/bag.jpg');
 new product('banana', 'img/banana.jpg');
 new product('bathroom', 'img/bathroom.jpg');
@@ -23,6 +24,7 @@ new product('boots', 'img/boots.jpg');
 new product('breakfast', 'img/breakfast.jpg');
 new product('bubblegum', 'img/bubblegum.jpg');
 new product('chair', 'img/chair.jpg');
+new product('cthulhu', 'img/cthulhu.jpg');
 new product('dog-duck', 'img/dog-duck.jpg')
 new product('dragon', 'img/dragon.jpg')
 new product('pen', 'img/pen.jpg')
@@ -33,7 +35,10 @@ new product('sweep', 'img/sweep.png')
 new product('tautaun', 'img/tauntaun.jpg')
 new product('unicorn', 'img/unicorn.jpg')
 new product('water-can', 'img/water-can.jpg')
-new product('wine-glass', 'img/wine-glass.jpg')
+new product('wine-glass', 'img/wine-glass.jpg')}
+else{
+  getProducts();
+}
 
 const section = document.getElementById('sec-one');
 const leftImageElement = document.getElementById('left-image');
@@ -58,7 +63,7 @@ function renderThreeImages() {
   while (leftIndex === rightIndex || centerIndex === leftIndex || rightIndex === centerIndex|| images.includes(leftIndex) ||images.includes(centerIndex) || images.includes(rightIndex)) {
     leftIndex = generateRandomIndex();
     centerIndex = generateRandomIndex();
-    while (leftIndex === centerIndex) { centerIndex = generateRandomIndex(); }
+    rightIndex = generateRandomIndex();
   }
   
   images=[];
@@ -107,6 +112,7 @@ function handleClick(event) {
     rightImageElement.removeEventListener('click', handleClick);
     section.removeEventListener('click', handleClick)
   }
+  storeProducts();
 }
 let arrOfshown = [];
 
@@ -134,7 +140,7 @@ function myFunction() {
   }
 
 }
-console.log(arrOfVotes);
+// console.log(arrOfVotes);
 function gettingChart() {
   let ctx = document.getElementById('myChart')
   let myChart = new Chart(ctx, {
@@ -166,4 +172,21 @@ function handleShow() {
   renderList();
   gettingChart();
   btnEl.removeEventListener('click', handleShow);
+}
+function storeProducts(){
+  localStorage.setItem('productelement', JSON.stringify(productelement));
+}
+function storeProducts(){
+  localStorage.setItem('productelement', JSON.stringify(productelement));
+}
+function getProducts(){
+  var retrievedProductsParsed = JSON.parse(localStorage.getItem('productelement'));
+  for(var i = 0; i < retrievedProductsParsed.length; i++) {
+    new product(
+      retrievedProductsParsed[i].name,
+      retrievedProductsParsed[i].img_src,
+      retrievedProductsParsed[i].see,
+      retrievedProductsParsed[i].votes);
+
+  }
 }
